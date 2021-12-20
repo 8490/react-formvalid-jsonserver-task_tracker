@@ -33,17 +33,45 @@ function App() {
   }, []);
 
   // ADD TASK
-  const addTask = (newTask) => {
-    const id = Math.floor(Math.random() * 100) + 1;
-    const addNewTask = { id, ...newTask };
-    setTasks([...tasks, addNewTask]);
+  // const addTask = async (newTask) => {
+  //   const res = await fetch(baseUrl, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(newTask),
+  //   });
+  //   fetchTasks();
+  // };
+
+  const addTask = async (newTask) => {
+    await axios.post(baseUrl, newTask);
+    fetchTasks();
   };
 
+  // const addTask = (newTask) => {
+  //   const id = Math.floor(Math.random() * 100) + 1;
+  //   const addNewTask = { id, ...newTask };
+  //   setTasks([...tasks, addNewTask]);
+  // };
+
   // DELETE TASK
-  const deleteTask = (deletedTaskId) => {
-    // console.log("delete", deletedTask);
-    setTasks(tasks.filter((task) => task.id !== deletedTaskId));
+  const deleteTask = async (deletedTaskId) => {
+    await axios.delete(`${baseUrl}/${deletedTaskId}`);
+    fetchTasks();
   };
+
+  // const deleteTask = async (deletedTaskId) => {
+  //   await fetch(`${baseUrl}/${deletedTaskId}`, {
+  //     method: "DELETE",
+  //   });
+  //   fetchTasks();
+  // };
+
+  // const deleteTask = (deletedTaskId) => {
+  // console.log("delete", deletedTask);
+  //   setTasks(tasks.filter((task) => task.id !== deletedTaskId));
+  // };
 
   //TOGGLE DONE
   const toggleDone = (toogleDoneId) => {
