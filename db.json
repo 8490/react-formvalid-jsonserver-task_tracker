@@ -27,7 +27,7 @@
     {
       "text": "Study Project",
       "day": "Dec 15th at 4:00pm",
-      "isDone": false,
+      "isDone": true,
       "id": 5
     }
   ]

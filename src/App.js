@@ -75,19 +75,27 @@ function App() {
 
   //TOGGLE DONE
   const toggleDone = async (toogleDoneId) => {
-    const res = await fetch(`${baseUrl}/${toogleDoneId}`);
-    const data = await res.json();
+    const { data } = await axios.get(`${baseUrl}/${toogleDoneId}`);
     const updatedTask = { ...data, isDone: !data.isDone };
 
-    await fetch(`${baseUrl}/${toogleDoneId}`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(updatedTask),
-    });
+    await axios.put(`${baseUrl}/${toogleDoneId}`, updatedTask);
     fetchTasks();
   };
+
+  // const toggleDone = async (toogleDoneId) => {
+  //   const res = await fetch(`${baseUrl}/${toogleDoneId}`);
+  //   const data = await res.json();
+  //   const updatedTask = { ...data, isDone: !data.isDone };
+
+  //   await fetch(`${baseUrl}/${toogleDoneId}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(updatedTask),
+  //   });
+  //   fetchTasks();
+  // };
 
   // const toggleDone = (toogleDoneId) => {
   //   setTasks(
