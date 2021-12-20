@@ -74,13 +74,28 @@ function App() {
   // };
 
   //TOGGLE DONE
-  const toggleDone = (toogleDoneId) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === toogleDoneId ? { ...task, isDone: !task.isDone } : task
-      )
-    );
+  const toggleDone = async (toogleDoneId) => {
+    const res = await fetch(`${baseUrl}/${toogleDoneId}`);
+    const data = await res.json();
+    const updatedTask = { ...data, isDone: !data.isDone };
+
+    await fetch(`${baseUrl}/${toogleDoneId}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(updatedTask),
+    });
+    fetchTasks();
   };
+
+  // const toggleDone = (toogleDoneId) => {
+  //   setTasks(
+  //     tasks.map((task) =>
+  //       task.id === toogleDoneId ? { ...task, isDone: !task.isDone } : task
+  //     )
+  //   );
+  // };
 
   //TOOGLESHOW
   const toggleShow = () => setShowAddTask(!showAddTask);
