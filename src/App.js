@@ -10,8 +10,7 @@ function App() {
 
   const [showAddTask, setShowAddTask] = useState(false);
 
-  const baseUrl =
-    "https://my-json-server.typicode.com/8490/task-tracker-server/tasks";
+  const baseUrl = "https://ethan-task-tracker.herokuapp.com/tasks";
 
   // CRUD Create Read Update, Delete
 
