@@ -2,7 +2,7 @@
 
 import Button from "./Button";
 
-const Header = ({ title, showAddTask, toggleShow }) => {
+const Header = ({ title, showAddTask, toggleShow, deleteAllTasks }) => {
   // const handleClick = () => {
   //   console.log("Click");
   // };
@@ -16,9 +16,14 @@ const Header = ({ title, showAddTask, toggleShow }) => {
         handleClick={handleClick}
       /> */}
       <Button
-        color={showAddTask ? "red" : "purple"}
+        color={showAddTask ? "red" : "green"}
         text={showAddTask ? "Close Add Task Bar" : "Show Add Task Bar"}
-        toggleShow={toggleShow}
+        toggle={toggleShow}
+      />
+      <Button
+        color={"purple"}
+        text={"Delete All Tasks"}
+        toggle={deleteAllTasks}
       />
     </header>
   );

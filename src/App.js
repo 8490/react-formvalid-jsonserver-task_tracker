@@ -61,6 +61,12 @@ function App() {
     fetchTasks();
   };
 
+  // DELETE ALL TASKS
+  const deleteAllTasks = async () => {
+    await tasks.map((task) => axios.delete(`${baseUrl}/${task.id}`));
+    fetchTasks();
+  };
+
   // const deleteTask = async (deletedTaskId) => {
   //   await fetch(`${baseUrl}/${deletedTaskId}`, {
   //     method: "DELETE",
@@ -114,7 +120,9 @@ function App() {
         title="Task Tracker"
         showAddTask={showAddTask}
         toggleShow={toggleShow}
+        deleteAllTasks={deleteAllTasks}
       />
+
       {showAddTask && <AddTask addTask={addTask} />}
       {/* <Tasks tasks={tasks} deleteTask={deleteTask} toggleDone={toggleDone} /> */}
 
